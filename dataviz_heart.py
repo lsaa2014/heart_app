@@ -53,8 +53,7 @@ def write():
 
     st.subheader('Multivariate (Correlation plot)')
     cor = df[num_var].corr()
-    fig = px.imshow(cor, color_continuous_scale='ice_r', width=690, height=600, text_auto=True)
-    #fig = go.Figure(data=go.Heatmap(cor))
+    fig = px.imshow(cor, color_continuous_scale='ice_r', width=690, height=600)
     st.write(fig)
 
 
