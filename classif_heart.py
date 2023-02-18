@@ -56,7 +56,6 @@ def select_classifier(selection, name=True):
     clfs = {
     'Logistic Regression': LogisticRegression(),
     'Random Forest': RandomForestClassifier(random_state=1, max_depth = 3, n_estimators = 30),
-    'Gradient Boosting': GradientBoostingClassifier(max_depth = 2, n_estimators = 30),
     'XGBoost': XGBClassifier(max_depth = 3, n_estimators = 50),
      }
 
@@ -95,13 +94,10 @@ def classif_model(classifier, data, target, features, testing = None):
     ## table result
     res = [f'{val:.2%}' for val in y_pred_proba[:,1]]
     res_df = pd.DataFrame(list(zip(y_pred, res)), columns = ['Labels', 'Probability'])
-    # st.write(res_df)
-    
+   
     if testing is not None:
         y_pred_test = clf.predict(testing)
         y_pred_proba = clf.predict_proba(testing)
-        # st.write(y_pred_test)
-        # st.write(y_pred_proba[:,1][0])
         st.write(f'Your prediction is {y_pred_test[0]} with {y_pred_proba[:,1][0]:.2%} of probability')	
 
     return result_metrics, res_df    
@@ -117,7 +113,7 @@ def write():
 
     classifier = st.selectbox("Select a classifier Algorithm",   
                                      ['Logistic Regression', 
-                                      'Random Forest', 'Gradient Boosting',
+                                      'Random Forest',
                                        'XGBoost'])                    
     st.subheader(f'''Prediction with {classifier}''')
 
@@ -130,10 +126,8 @@ def write():
     ss = col2.number_input("Level of sodium in the blood (mEq/L)", min_value = df['serum_sodium'].min(), value = 116, max_value = df['serum_sodium'].max())
 
     new_df = pd.DataFrame([[ef, sc, ss, time]], columns = features)
-    # st.write(new_df)
 
-    if st.button('Predict'):
-    	#st.subheader(f'''Prediction on a new test set''')    
+    if st.button('Predict'): 
     	st.subheader(f"**Result on your data**")
     	_, df_class = classif_model(classifier, df, df['DEATH_EVENT'], features, testing = new_df)
 
@@ -146,7 +140,6 @@ def write():
 
     	st.write(f"The predicted label is {df_class.loc[selectidx, 'Labels']} \
     		  		      with {df_class.loc[selectidx, 'Probability']} of probability")
-    		#st.table(df_class.loc[selectidx, :])
 
     	#show results
     	st.write(f"The metrics for on the validation set is")
