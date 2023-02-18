@@ -1,16 +1,4 @@
-import streamlit as st
-
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import plotly.graph_objects as go
-import plotly.express as px
-import plotly.io as pio
-
-
-def load_data(DATA_URL):
-    data = pd.read_csv(DATA_URL)
-    return data
+from utils import *
 
 df = load_data('heart_failure_clinical_records_dataset.csv')
 
