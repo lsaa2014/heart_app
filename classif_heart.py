@@ -141,7 +141,6 @@ def write():
 
     	st.write(f"The predicted label is {df_class.loc[selectidx, 'Labels']} \
     		  		      with {df_class.loc[selectidx, 'Probability']} of probability")
-    		#st.table(df_class.loc[selectidx, :])
 
     	#show results
     	st.write(f"The metrics for on the validation set is")
