@@ -32,4 +32,4 @@ page.write()
 
 st.sidebar.markdown('''
     -------
-    By Danielle Taneyo''')
+    By Danielle Taneyo, PhD''')
