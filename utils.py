@@ -208,6 +208,7 @@ def classif_model(classifier, data, target, features, testing = None):
    
     if testing is not None:
         y_pred_test = clf.predict(testing)
+        st.write(y_pred_test)
         y_pred_proba = clf.predict_proba(testing)
         st.write(f'Your prediction is {y_pred_test[0]} with {y_pred_proba[:,1][0]:.2%} of probability')	
 
