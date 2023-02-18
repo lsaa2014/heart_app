@@ -17,7 +17,7 @@ def write():
     st.subheader(f'''Prediction with {classifier}''')
 
     features = ['ejection_fraction','serum_creatinine', 'serum_sodium', 'time']
-    col1, col2 = st.columns(2)
+    col1, col2 = st.beta_columns(2)
 
     time = col1.number_input('Follow-up period', min_value = df['time'].min(), value = 8, max_value = df['time'].max())
     ef = col1.number_input('Percentage of blood leaving', min_value = df['ejection_fraction'].min(), value = 38, max_value = df['ejection_fraction'].max())
